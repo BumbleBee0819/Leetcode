@@ -16,7 +16,7 @@ class Solution:
         if len(word2) == 0:
             return len(word1)
             
-            
+        # DP[i][j]: the minimim steps to covert word1[0:i+1] to word2[0:j+1]    
         DP = [[0] * len(word1) for i in word2]
         
         # row
