@@ -1,4 +1,6 @@
-class Solution:
+# https://www.lintcode.com/problem/edit-distance/description
+
+class Solution:    
     """
     @param word1: A string
     @param word2: A string
