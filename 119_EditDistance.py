@@ -52,6 +52,9 @@ class Solution:
         for i in range(1, len(DP)):
             for j in range(1, len(DP[0])):
                 if word1[j] != word2[i]:
+                    # delete: DP[i-1][j]
+                    # insert: DP[i][j-1]
+                    # replace: DP[i-1][j-1]
                     DP[i][j] = min(DP[i-1][j], DP[i][j-1], DP[i-1][j-1])+1
                 else:
                     DP[i][j] = min(DP[i-1][j]+1, DP[i][j-1]+1, DP[i-1][j-1])
