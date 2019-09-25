@@ -1,4 +1,5 @@
 # https://www.lintcode.com/problem/edit-distance/description
+# 区间型DP要从最大状态开始想，类似分治。从小到大的DP用循环，从大到小的DP用记忆化搜索
 
 class Solution:    
     """
