@@ -21,6 +21,7 @@ class Solution:
             
         # row: S2
         # col: S1
+        # DP[i][j]: whether s1[0:i] and s2[0:j] can make s3[0:i+j-1]
         DP = [[False] * (len(s1)+1) for i in range(len(s2)+1)]
         
         # first row:
