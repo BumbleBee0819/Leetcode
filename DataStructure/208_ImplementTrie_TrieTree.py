@@ -1,18 +1,14 @@
 # https://leetcode.com/problems/implement-trie-prefix-tree/
 
-class TrieNode(object):
-    def __init__(self):
-        self.tnlst = {}
-        self.terminal = False
 
-        
 class Trie(object):
 
     def __init__(self):
         """
         Initialize your data structure here.
         """
-        self.root = TrieNode()
+        self.root = {}
+        self.end = -1
 
         
 
@@ -22,12 +18,17 @@ class Trie(object):
         :type word: str
         :rtype: None
         """
-        r = self.root
-        for w in word:
-            if w not in r.tnlst:
-                r.tnlst[w] = TrieNode()
-            r = r.tnlst[w]
-        r.terminal = True
+        
+        thisTree = self.root
+        
+        for i in word:
+            if i not in thisTree:
+                thisTree[i] = {}
+                
+            thisTree = thisTree[i]
+            
+        thisTree[self.end] = True
+            
         
         
         
@@ -37,14 +38,18 @@ class Trie(object):
         :type word: str
         :rtype: bool
         """
-        r = self.root
         
-        for w in word:
-            if w in r.tnlst:
-                r = r.tnlst[w]
-            else:
+        thisTree = self.root
+        
+        for i in word:
+            if i not in thisTree:
                 return False
-        return r.terminal
+            thisTree = thisTree[i]
+        
+        if self.end not in thisTree:
+            return False
+        
+        return True
         
         
         
@@ -55,12 +60,13 @@ class Trie(object):
         :type prefix: str
         :rtype: bool
         """
-        r = self.root
-        for w in prefix:
-            if w in r.tnlst:
-                r = r.tnlst[w]
-            else:
+        
+        thisTree = self.root
+        
+        for i in prefix:
+            if i not in thisTree:
                 return False
+            thisTree = thisTree[i]
         return True
         
 
