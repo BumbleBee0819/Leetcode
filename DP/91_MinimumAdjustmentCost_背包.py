@@ -59,7 +59,7 @@ class Solution1:
         
         # DP[i][j]: min cost for first i items & the i-th item' val is j
         
-        DP = [[float('Inf')] * (8) for i in range(2)]
+        DP = [[float('Inf')] * (100+1) for i in range(2)]
         
         # first row
         for j in range(len(DP[0])):
