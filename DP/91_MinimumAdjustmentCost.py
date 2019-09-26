@@ -17,6 +17,7 @@ class Solution:
             
         
         # DP[i][j]: min cost for first i items when the i-th item == j
+        # O(A*100*T)
         
         
         DP = [[float('Inf')] * (100+1) for i in A]
