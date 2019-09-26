@@ -23,7 +23,7 @@ class Solution:
         DP = [[float('Inf')] * (100+1) for i in A]
         
         # first row
-        for j in range(101):
+        for j in range(len(DP[0])):
             DP[0][j] = abs(j - A[0])
             
 
@@ -31,12 +31,24 @@ class Solution:
 
         for i in range(1, len(A)):
             thisA = A[i]
-            for j in range(101):
+            
+            for j in range(len(DP[0])):
                 thisB = j
-                thisAdjustment = abs(A[i]-j)
+                thisAdjustment = abs(thisA-thisB)
+                
                 for k in range(0, target+1):
                     if j-k < 0 and j + k >= len(DP[0]):
                         break
+                        
+                    lastAdjustment = float('Inf')
+                    if j-k >= 0:
+                        lastAdjustment = min(lastAdjustment, DP[i-1][j-k])
+                    if j+k < len(DP[0]):
+                        lastAdjustment = min(lastAdjustment, DP[i-1][j+k])
+                        
+                    DP[i][j] = min(DP[i][j], lastAdjustment+thisAdjustment)
+                    
+        return min(DP[-1])
                         
                         
                         
@@ -67,9 +79,7 @@ class Solution1:
             
 
         for i in range(1, len(A)):
-            thisA = A[i]
-            
-
+            thisA = A[i]     
             
             for j in range(len(DP[0])):
                 # 空间优化时一定要注意每个值每一步都需要更新，不能用default value
@@ -90,16 +100,6 @@ class Solution1:
                     DP[i%2][j] = min(DP[i%2][j], lastAdjustment+thisAdjustment)
             
 
-
         return min(DP[i%2])
                     
-                    lastAdjustment = float('Inf')
-                    if j-k >= 0:
-                        lastAdjustment = min(lastAdjustment, DP[i-1][j-k])
-                    if j+k < len(DP[0]):
-                        lastAdjustment = min(lastAdjustment, DP[i-1][j+k])
-                        
-                    DP[i][j] = min(DP[i][j], lastAdjustment+thisAdjustment)
-                    
-        return min(DP[-1])
                     
