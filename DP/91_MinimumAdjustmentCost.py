@@ -36,7 +36,7 @@ class Solution:
                 thisAdjustment = abs(A[i]-j)
                 for k in range(0, target+1):
                     if j-k < 0 and j + k >= len(DP[0]):
-                        continue
+                        break
                     
                     lastAdjustment = float('Inf')
                     if j-k >= 0:
